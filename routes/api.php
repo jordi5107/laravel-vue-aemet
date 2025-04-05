@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\WeatherAppController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| API Routes
+| API Routes 
 |--------------------------------------------------------------------------
 |
 | Here is where you can register API routes for your application. These
@@ -17,3 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('/township-forecast/{townshipCode}', [WeatherAppController::class, 'searchTownshipForecast'])
+    ->name('township-forecast');
