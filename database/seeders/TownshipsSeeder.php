@@ -40,11 +40,20 @@ class TownshipsSeeder extends Seeder
             $townshipCode = isset($data[1]) && isset($data[2]) ? $data[1] . $data[2] : null;
             $townshipName = isset($data[4]) ? $data[4] : null;
             
+            // Check if the township name contains a comma
+            if ($townshipName && strpos($townshipName, ',') !== false) {
+                $parts = explode(',', $townshipName);
+                if (count($parts) >= 2) {
+                    $name = trim($parts[0]);
+                    $determinant = trim($parts[1]);
+                    $townshipName = $determinant . ' ' . $name;
+                }
+            }
+            
             if ($townshipCode && $townshipName) {
             Township::create([
                 'code' => $townshipCode,
                 'name' => $townshipName,
-                // Add other fields as needed based on your model
             ]);
             }
         }

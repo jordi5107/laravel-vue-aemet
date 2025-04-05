@@ -1,5 +1,5 @@
 <template>
-    <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md w-full max-w-4xl mx-auto">
+    <div v-if="!isLoading" class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md w-full max-w-4xl mx-auto">
         <h3 class="text-2xl font-bold mb-6 text-center text-gray-800 dark:text-white">
             Predicción meteorológica {{ township }}
         </h3>
@@ -17,24 +17,17 @@
                 <WeatherDayCard :weatherDay="day" />
             </div>
         </div>
-        
-       
-
-        <!-- Loading spinner
-        <div v-if="isLoading" class="flex justify-center items-center p-8">
-            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-700"></div>
-        </div>
-        
-        <div v-if="error" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mt-4">
-            {{ error }}
-        </div>
-         -->
     </div>
+    <div v-if="isLoading" class="flex justify-center items-center p-8">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-4 border-t-4 border-blue-700"></div>
+            <span class="ml-3 text-gray-700 dark:text-gray-300">Cargando datos...</span>
+        </div>
 </template>
 <script setup>
 import WeatherDayCard from '@/Components/ForecastWeather/WeatherDayCard.vue';
 import ForecastCurrentDay from '@/Components/ForecastWeather/ForecastCurrentDay.vue';
-defineProps({
+
+const props = defineProps({
     forecastData: {
         type: Array,
         required: true
@@ -42,6 +35,11 @@ defineProps({
     township: {
         type: String,
         required: true
+    },
+    isLoading: {
+        type: Boolean,
     }
-})
+});
+
+
 </script>

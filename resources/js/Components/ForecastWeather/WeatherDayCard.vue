@@ -1,7 +1,7 @@
 <template>
     <div class="flex justify-between items-center mb-3">
         <h4 class="font-bold text-lg text-gray-800 dark:text-white">
-            {{ new Date(weatherDay.fecha).toLocaleDateString('es-ES', { weekday: 'short', day: 'numeric', month: 'short' }) }}
+            {{ formatedDate }}
         </h4>
         <div class="flex items-center">
             <span class="text-sm font-semibold text-blue-700 dark:text-blue-300">
@@ -14,7 +14,6 @@
         </div>
     </div>
 
-    <!-- Weather icon and description -->
     <div class="flex items-center mb-3">
         <img 
             :src="`https://www.aemet.es/imagenes_gcd/_iconos_municipios/${weatherDay.estadoCielo[0].value}.png`" 
@@ -26,7 +25,6 @@
         </span>
     </div>
 
-    <!-- Additional weather info -->
     <div class="grid grid-cols-2 gap-2 text-xs">
         <div class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -42,7 +40,7 @@
             <span>{{ weatherDay.viento[0].direccion }} {{ weatherDay.viento[0].velocidad }} km/h</span>
         </div>
         
-        <div class="flex items-center">
+        <div v-if="weatherDay.humedadRelativa.uvMax" class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
             </svg>
@@ -58,10 +56,17 @@
     </div>
 </template>
 <script setup>
-defineProps({
-    weatherDay: {
-        type: Object,
-        required: true
-    }
-})
+    import { computed } from 'vue';
+
+    const props = defineProps({
+        weatherDay: {
+            type: Object,
+            required: true
+        }
+    })
+
+    const formatedDate = computed(() => {
+        return new Date(props.weatherDay.fecha).toLocaleDateString('es-ES', { weekday: 'short', day: 'numeric', month: 'short' })
+    });
+
 </script>
