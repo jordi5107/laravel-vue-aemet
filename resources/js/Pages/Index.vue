@@ -53,7 +53,6 @@ function searchWeather() {
     axios.get(`/api/township-forecast/${selectedTownship.value.code}`)
         .then(response => {
             forecastData.value = response.data.forecast;
-            console.log('Forecast data:', response.data);
         })
         .catch(error => {
             console.error('Error fetching township forecast:', error);

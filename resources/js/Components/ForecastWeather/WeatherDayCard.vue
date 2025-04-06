@@ -39,8 +39,8 @@
             </svg>
             <span>{{ weatherDay.viento[0].direccion }} {{ weatherDay.viento[0].velocidad }} km/h</span>
         </div>
-        
-        <div v-if="weatherDay.humedadRelativa.uvMax" class="flex items-center">
+
+        <div v-if="weatherDay.uvMax" class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
             </svg>
@@ -49,7 +49,7 @@
         
         <div class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3.75c-3.75 4.5-9 6-9 11.25C3 19.5 7 22.5 12 22.5s9-3 9-7.5c0-5.25-5.25-6.75-9-11.25z" />
             </svg>
             <span>{{ weatherDay.humedadRelativa.minima }}-{{ weatherDay.humedadRelativa.maxima }}%</span>
         </div>
